@@ -11,14 +11,14 @@ if (!$result) {
 } else {
     $return_arr = array();
     while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-        $row_array['productid'] = $row['productid'];
-        $row_array['name'] = $row['name'];
-        $row_array['desc'] = $row['description'];
-        $row_array['price'] = $row['price'];
-        $row_array['quantity'] = $row['quantity'];
+        $row_array['productID'] = $row['productid'];
+        $row_array['productName'] = $row['name'];
+        $row_array['productDescription'] = $row['description'];
+        $row_array['productPrice'] = $row['price'];
+        $row_array['productQuantity'] = $row['quantity'];
         array_push($return_arr,$row_array);
     }
-    echo json_encode($return_arr);
+    // echo json_encode($return_arr);
 }
 mysql_close($conn);
 ?>

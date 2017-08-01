@@ -1,0 +1,17 @@
+{% include 'header.phtml' %}
+
+<div class="single-product-container">
+    <img class="product-image" src="media/products/{{ productID}}.png">
+    <div class="product-name-price">
+        <div class="product-name">{{ productName }}</div>
+        <div class="product-price-quantity">
+            <div class="product-price">${{ productPrice }}</div>
+            <div class="product-quantity">{{ productQuantity }} available to buy</div>
+        </div>
+        <div class="buy">Buy</div>
+    </div>
+    <div class="product-menu-item">Description: {{ productID}}</div>
+    <div class="product-desc">
+        {{ productDescription }}
+    </div>
+</div>
