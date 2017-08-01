@@ -1,0 +1,15 @@
+{% include 'header.phtml' %}
+
+<div class="main-container">
+    {% for product in searchResults %}
+        <div class="search-item">
+            <img class="search-image" src="media/products/{{ product.id}}.jpg">
+            <div class="search-name">{{ product.name }}</div>
+            <div class="search-price-quantity">
+                <div class="search-price">&pound{{ product.price }}</div>
+                <div class="search-quantity">{{ product.quantity }} available to buy</div>
+            </div>
+            <div class="search-buy">Buy | <a href="?s={{ product.id }}">More details</a></div>
+        </div>
+    {% endfor %}
+</div>

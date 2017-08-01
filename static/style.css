@@ -27,6 +27,7 @@
     margin: auto;
     width: 75%;
     text-align: justify;
+    padding-bottom: 10px;
 }
 
 .menu:after{
@@ -41,7 +42,7 @@
 }
 
 /* product style */
-.single-product-container{
+.main-container{
     width: 75%;
     margin: auto;
     padding: 5px;
@@ -100,4 +101,42 @@
 .product-menu-item {
     font-size: 18px;
     padding: 5px;
+}
+
+.search-item{
+    display: inline-block;
+    vertical-align: top;
+    border: 2px;
+    border-color: black;
+    width: 33%;
+}
+
+.search-image{
+    background-color: black;
+    width: 300px;
+    height: 300px;
+}
+
+.search-name{
+    text-align: center;
+    font-size: 24px;
+    padding: 10px;
+    height: 92px;
+}
+.search-price-quantity{
+    width: 100%;
+    padding-bottom: 5px;
+}
+.search-price{
+    display: inline-block;
+    text-align: center;
+    width: 45%;
+}
+.search-quantity{
+    display: inline-block;
+    width: 45%;
+}
+.search-buy {
+    width: 100%;
+    text-align: center;
 }

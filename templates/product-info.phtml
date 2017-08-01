@@ -1,17 +1,17 @@
 {% include 'header.phtml' %}
 
-<div class="single-product-container">
-    <img class="product-image" src="media/products/{{ productID}}.png">
+<div class="main-container">
+    <img class="product-image" src="media/products/{{ product.id }}.jpg">
     <div class="product-name-price">
-        <div class="product-name">{{ productName }}</div>
+        <div class="product-name">{{ product.name }}</div>
         <div class="product-price-quantity">
-            <div class="product-price">${{ productPrice }}</div>
-            <div class="product-quantity">{{ productQuantity }} available to buy</div>
+            <div class="product-price">&pound{{ product.price }}</div>
+            <div class="product-quantity">{{ product.quantity }} available to buy</div>
         </div>
         <div class="buy">Buy</div>
     </div>
-    <div class="product-menu-item">Description: {{ productID}}</div>
+    <div class="product-menu-item">Description: {{ product.id}}</div>
     <div class="product-desc">
-        {{ productDescription }}
+        {{ product.description }}
     </div>
 </div>
