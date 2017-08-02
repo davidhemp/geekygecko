@@ -1,17 +1,46 @@
 {% include 'header.phtml' %}
 
-<div class="main-container">
-    <img class="product-image" src="media/products/{{ product.id }}.jpg">
-    <div class="product-name-price">
-        <div class="product-name">{{ product.name }}</div>
-        <div class="product-price-quantity">
-            <div class="product-price">&pound{{ product.price }}</div>
-            <div class="product-quantity">{{ product.quantity }} available to buy</div>
+<div class="container info">
+    <div class="row">
+        <div class="col-lg-5 col-md-5 valign">
+            <img width="100%" src="media/products/{{ product.id }}.jpg">
         </div>
-        <div class="buy">Buy</div>
+        <div class="col-lg-7 col-md-7 valign">
+            <div class="row">
+                <div class="col-lg-12 col-lg-12"><h2>{{ product.name }}</h2></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12"><h3>&pound{{ product.price }}  <small>(inc. VAT) RRP: </small></h3></div>
+            </div>
+            <div class="row">
+                <form class="form-horizontal" role="form" style="padding-left:15px;">
+                    <div class="form-group">
+                        <div class="col-ld-2 col-md-2 col-sm-2 col-xs-3">
+                            <select  class="form-control" id="but-quantity">
+                            {% for i in 1..product.quantity %}
+                              <option>{{ i }}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
+                            <button class="btn btn-default">Add to Basket</button>
+                        </div>
+                        <div class="col-ld-8 col-md-8 col-sm-7 col-xs-4"><p class="form-control-static">{{ product.quantity }} available</p></div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="product-menu-item">Description: {{ product.id}}</div>
-    <div class="product-desc">
-        {{ product.description }}
+    <div class="container">
+        <div class="row">
+            <div class="col-sx-12">
+                Description: {{ product.id}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sx-12">
+                {{ product.description }}
+            </div>
+        </div>
     </div>
 </div>
