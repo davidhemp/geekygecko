@@ -8,7 +8,9 @@ $twig = new Twig_Environment($loader);
 
 <!-- Pre-header load -->
 <?php
-$sub_total = htmlspecialchars($_COOKIE['subTotal']);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+require_once "static/basket.php"
 ?>
 
 <!DOCTYPE html>
@@ -25,25 +27,9 @@ $sub_total = htmlspecialchars($_COOKIE['subTotal']);
 <body>
     <?php
         $context = array();
+        $context['purchases'] = $products;
         $context['subTotal'] = $sub_total;
-        $search_term = '%' . htmlspecialchars($_GET["s"]) . '%';
-        if (2 < strlen($search_term)){
-            $return_arr = product_search($search_term);
-            if ($return_arr){
-                if (1 < count($return_arr)){
-                    $template = $twig->loadTemplate("search-results.phtml");
-                    $context['searchResults'] = $return_arr;
-                } elseif (1 == count($return_arr)){
-                    $template = $twig->loadTemplate("product-info.phtml");
-                    $context['product'] = $return_arr[0];
-                } else {
-                    $template = $twig->loadTemplate("home.phtml");
-                    $context['error'] = "no ideas found";
-                }
-            }
-        } else {
-            $template = $twig->loadTemplate("home.phtml");
-        }
+        $template = $twig->loadTemplate("basket.phtml");
         $template->display($context);
      ?>
 </body>

@@ -1,5 +1,4 @@
 #server connection file
-connect.php
 
 #php twig 1.34
 Twig/

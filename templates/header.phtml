@@ -15,7 +15,7 @@
             <a href="#"><img  src="media/basket.png"></a>
         </div>
         <div class="row">
-            <a href="#"><p>Basket</p></a>
+            <a href="/basket.php"><p>&pound{{ subTotal }}</p></a>
         </div>
     </div>
     <div class="col-md-8 col-md-pull-2 col-sm-8 col-sm-pull-2 col-xs-12 icon-center">
@@ -25,14 +25,24 @@
     </div>
 </div>
 <div class="row menu">
-    <div class="col-sm-2 col-xs-4 header-link"><a href="?s=">Home</a></li></div>
-    <div class="col-sm-2 col-xs-4 header-link"><a href="?s=pokemon">Pokemon</a></li></div>
-    <div class="col-sm-2 col-xs-4 header-link"><a href="?s=MTG">Magic</a></li></div>
-    <div class="col-sm-2 col-xs-4 header-link"><a href="?s=acce">Accessories</a></li></div>
-    <div class="col-sm-2 col-xs-4 header-link"><a href="#">New</a></li></div>
-    <div class="col-sm-2 col-xs-4 header-link"><a href="#">Sale</a></li></div>
+    <div class="col-sm-2 col-xs-4 header-link"><a href="/?s=">Home</a></li></div>
+    <div class="col-sm-2 col-xs-4 header-link"><a href="/?s=pokemon">Pokemon</a></li></div>
+    <div class="col-sm-2 col-xs-4 header-link"><a href="/?s=MTG">Magic</a></li></div>
+    <div class="col-sm-2 col-xs-4 header-link"><a href="/?s=acce">Accessories</a></li></div>
+    <div class="col-sm-2 col-xs-4 header-link"><a href="/#">New</a></li></div>
+    <div class="col-sm-2 col-xs-4 header-link"><a href="/#">Sale</a></li></div>
 </div>
 <div class="row menu">
     <div class="hidden-lg hidden-md hidden-sm col-xs-6 header-link"><a href="#"><p>Account</p></a></div>
-    <div class="hidden-lg hidden-md hidden-sm col-xs-6 header-link"><a href="#"><p>Basket</p></a></div>
+    <div class="hidden-lg hidden-md hidden-sm col-xs-6 header-link">
+        <a href="/basket.php">
+            <p id="basket">
+                {% if subTotal %}
+                    Basket: &pound{{ subTotal }}
+                {% else %}
+                    Basket
+                {% endif %}
+            </p>
+        </a>
+    </div>
 </div>

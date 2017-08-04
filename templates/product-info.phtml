@@ -16,14 +16,14 @@
                 <form class="form-horizontal" role="form" style="padding-left:15px;">
                     <div class="form-group">
                         <div class="col-ld-2 col-md-2 col-sm-2 col-xs-3">
-                            <select  class="form-control" id="but-quantity">
+                            <select  class="form-control" id="product-quantity">
                             {% for i in 1..product.quantity %}
                               <option>{{ i }}</option>
                             {% endfor %}
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
-                            <button class="btn btn-default">Add to Basket</button>
+                            <button type="button" class="btn btn-default" onclick="addFromInfo('{{ product.id }}', {{ product.price }})">Add to Basket</button>
                         </div>
                         <div class="col-ld-8 col-md-8 col-sm-7 col-xs-4"><p class="form-control-static">{{ product.quantity }} available</p></div>
                     </div>
