@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,12 +26,23 @@
             <a href="#"><img  src="media/basket.png"></a>
         </div>
         <div class="row">
-            <a href="/basket.php"><p>&pound{{ subTotal }}</p></a>
+            <a href="/basket.php">
+                <p id="header-subtotal">
+                    {% if subTotal > 0 %}
+                        &pound{{ subTotal }}
+                    {% else %}
+                        Basket
+                    {% endif %}
+                </p>
+            </a>
         </div>
     </div>
     <div class="col-md-8 col-md-pull-2 col-sm-8 col-sm-pull-2 col-xs-12 icon-center">
-        <form class="search-vcenter">
-            <input class="form-control search-bar" type="text" name="search" placeholder="Search..">
+        <form class="search-vcenter" action="/" method="get">
+            <input class="form-control search-bar"
+                   type="text"
+                   name="s"
+                   placeholder="Search..">
         </form>
     </div>
 </div>
@@ -48,8 +58,8 @@
     <div class="hidden-lg hidden-md hidden-sm col-xs-6 header-link"><a href="#"><p>Account</p></a></div>
     <div class="hidden-lg hidden-md hidden-sm col-xs-6 header-link">
         <a href="/basket.php">
-            <p id="basket">
-                {% if subTotal %}
+            <p id="header-subtotal2">
+                {% if subTotal > 0 %}
                     Basket: &pound{{ subTotal }}
                 {% else %}
                     Basket

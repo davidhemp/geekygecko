@@ -62,3 +62,8 @@ body {
     color: black;
     font-size: 20px;
 }
+
+#confirm-text{
+    color: red;
+    font-size: 24px;
+}

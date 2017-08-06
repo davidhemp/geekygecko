@@ -2,14 +2,67 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-ld-12">
-            {% for item in purchases %}
-                <P> {{ item.id }}, {{ item.quantity }}, {{ item.price }}, {{ item.totalCost }}</p>
-            {% endfor %}
-        </div>
-        <div class="col-ld-12">
-            {{ subTotal }}
-        </div>
+        <h2>Shopping Basket</h2>
     </div>
-<div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="col-md-9">Name</th>
+                    <th class="col-md-1">Quantity</th>
+                    <th class="col-md-1">Price</th>
+                    <th class="col-md-1">Totals</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in purchases %}
+                    <tr>
+                        <td>
+                            <a href="/?s={{ item.id }}">
+                                <h5 class="form-control-static">
+                                    {{ item.name }} <small>{{ item.id }}
+                                </h5>
+                            </a>
+                        </td>
+                        <td>
+                            <form action="/basket.php" method="get">
+                                <select class="form-control"
+                                       id="quantity_{{ item.id}}"
+                                       onchange="updateFromBasket('{{ item.id }}', parseInt(this.value,10), '{{ item.price }}')">
+                                {% for i in 0..item.maxQuantity %}
+                                    {% if i == item.quantity %}
+                                        <option selected>{{ i }}</option>
+                                    {% else %}
+                                        <option>{{ i }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </form>
+                        </td>
+                        <td><p class="form-control-static">&pound{{ item.price }}</p></td>
+                        <td><p class="form-control-static">&pound{{ item.totalCost }}</p></td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td><b>Subtotal</b></td>
+                    <td></td><td></td>
+                    <td>&pound{{ subTotal }}</td>
+                </tr>
+                <tr>
+                    <td>UK Delivery</td>
+                    <td></td><td></td>
+                    <td>&pound{{ delivery }}</td>
+                </tr>
+                <tr class="info">
+                    <td><b>Total</b></td>
+                    <td></td><td></td>
+                    <td>&pound{{ total }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <button action="/" method="get" class="btn btn-default" value="">Continue Shopping</button>
+        <button class="btn btn-default" value="">Checkout</button>
+    </div>
+</div>
 </body>

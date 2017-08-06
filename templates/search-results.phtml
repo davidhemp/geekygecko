@@ -1,5 +1,5 @@
 {% include 'header.phtml' %}
-</body>
+
 <div class="container">
     {% for product in searchResults %}
         <div class="col-md-4 col-sm-6 col-xs-12 tcenter info">
@@ -10,17 +10,14 @@
                     </a>
                 </div>
                 <div class="row">
-                    <div class="col-md-12"><h4>{{ product.name }}</h4></div>
+                    <div class="col-md-12"><h4><a href="?s={{ product.id }}">{{ product.name }}</a></h4></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6">&pound{{ product.price }}</div>
-                    <div class="col-md-6">{{ product.quantity }} available to buy</div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">Buy | <a href="?s={{ product.id }}">More details</a></div>
+                    <div class="col-md-2 col-md-offset-2 col-xs-2  col-xs-offset-2">&pound{{ product.price }}</div>
+                    <div class="col-md-4 col-xs-4">{{ product.quantity }} available</div>
+                    <div class="col-md-3 col-xs-4"><a href="?s={{ product.id }}">Buy Now</a></div>
                 </div>
             </div>
         </div>
     {% endfor %}
 </div>
-</body>

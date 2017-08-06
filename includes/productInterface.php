@@ -3,7 +3,7 @@ require_once 'db.php';
 
 function product_search($search_term){
     $conn = db_connect();
-    $query = "SELECT * FROM `products` WHERE name LIKE '$search_term' or productid LIKE '$search_term'";
+    $query = "SELECT * FROM `products` WHERE name LIKE '$search_term' or productid LIKE '$search_term' ORDER BY productid DESC";
     $result = mysql_query($query, $conn);
 
     mysql_close($conn);
@@ -16,7 +16,7 @@ function product_search($search_term){
 
 function unqiueproduct($unqiue){
     $conn = db_connect();
-    $query = "SELECT * FROM `products` WHERE productid LIKE '$unqiue'";
+    $query = "SELECT * FROM `products` WHERE productid = '$unqiue'";
     $result = mysql_query($query, $conn);
     mysql_close($conn);
 
@@ -35,10 +35,10 @@ function extractRows($result){
         $row_array['id'] = $row['productid'];
         $row_array['name'] = $row['name'];
         $row_array['description'] = $row['description'];
-        $row_array['price'] = $row['price'];
+        $row_array['price'] = number_format($row['price'], 2);
         $row_array['quantity'] = $row['quantity'];
         array_push($return_arr, $row_array);
-    return $return_arr;
     }
+    return $return_arr;
 }
 ?>

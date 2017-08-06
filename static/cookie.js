@@ -28,60 +28,40 @@ function getCookie(cname) {
 }
 
 function eraseCookie(name) {
-    createCookie(name,"",-1);
+    setCookie(name,"",-1);
 }
 // Application globals
 var subTotal = 0;
-var prefix = "product_";
+var prefix = "basket_";
 // Application functions
 
-function addProduct(productName, quantity, cost){
-    var cost = Number(cost);
-    var quantity = parseInt(quantity, 10);
-    var currentQuantity = parseInt(getCookie(productName), 10);
+function updateBasket(productid, quantity, deltaQuantity, cost){
     var currentTotal = Number(getCookie("subTotal"));
-
-    console.log(currentQuantity);
-
-    var newQuantity = currentQuantity + quantity
-    setCookie("basket_" + productName, newQuantity.toString() , 1);
-
-    var newCost = currentTotal+cost*quantity;
-    setCookie("subTotal", newCost.toString() , 1);
-    document.getElementById("basket").innerHTML = "Basket: £" + newCost.toString();
-
-}
-
-function removeProduct(productName, quantity, cost){
-    var productName = prefix + productName
-    var currentQuantity = parseInt(getCookie(productName), 10);
-    var newQuantity = currentQuantity - quantity
-    if (newQuantity > 0){
-        setCookie("basket_" + productName, newQuantity.toString(), 1);
+    var newCost = currentTotal+cost*deltaQuantity;
+    if (quantity > 0){
+        setCookie(prefix + productid, quantity.toString() , 1);
     } else {
-        setCookie(productName, "", -1);
+        eraseCookie(prefix + productid);
     }
-    var subTotal = Number(getCookie("subTotal"));
-    var newCost = subTotal + cost*quantity;
-    setCookie("subTotal", newCost.toString(), 1);
-    document.getElementById("basket").innerHTML = "Basket: " + newCost.toString();
+    setCookie("subTotal", newCost.toString() , 1);
+    document.getElementById("header-subtotal").innerHTML = "£" + newCost.toFixed(2);
+    document.getElementById("header-subtotal2").innerHTML = "Basket: £" + newCost.toFixed(2);
 }
 
-function addFromInfo(productName, cost){
-    var quantity = parseInt(document.querySelector("#product-quantity").value, 10);
-    addProduct(productName, quantity, cost);
-}
-///////////////////
-function getCookieByMatch(regex) {
-  var cs = document.cookie.split(/;\s*/);
-  var ret = [];
-  for (var i = 0; i < cs.length; i++) {
-    if (cs[i].match(regex)) {
-      ret.push(cs[i]);
+function addFromInfo(productid, cost){
+    var newQuantity = parseInt(document.querySelector("#product-quantity").value, 10);
+    var currentQuantity = parseInt(getCookie(prefix+productid), 10);
+    document.getElementById('addButton').innerHTML="Update Basket";
+    if (currentQuantity > 0){
+        document.getElementById('confirm-text').innerHTML="<p>Basket Updated</p>";
+    } else {
+        document.getElementById('confirm-text').innerHTML="<p>Added to Basket</p>";
     }
-  }
-  return ret;
-};
+    updateBasket(productid, newQuantity, newQuantity-currentQuantity, Number(cost));
+}
 
-
-// getCookieByMatch(/^text\d+=/);
+function updateFromBasket(productid, newQuantity, cost){
+    var currentQuantity = parseInt(getCookie(prefix+productid), 10);
+    updateBasket(productid, newQuantity, newQuantity-currentQuantity, Number(cost));
+    location.reload();
+}

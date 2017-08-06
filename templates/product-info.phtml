@@ -10,24 +10,46 @@
                 <div class="col-lg-12 col-lg-12"><h2>{{ product.name }}</h2></div>
             </div>
             <div class="row">
-                <div class="col-lg-12 col-md-12"><h3>&pound{{ product.price }}  <small>(inc. VAT) RRP: </small></h3></div>
+                <div class="col-lg-12 col-md-12">
+                    <h3>&pound{{ product.price }}  <small>(inc. VAT) RRP: </small></h3>
+                </div>
             </div>
             <div class="row">
                 <form class="form-horizontal" role="form" style="padding-left:15px;">
                     <div class="form-group">
                         <div class="col-ld-2 col-md-2 col-sm-2 col-xs-3">
-                            <select  class="form-control" id="product-quantity">
-                            {% for i in 1..product.quantity %}
-                              <option>{{ i }}</option>
-                            {% endfor %}
+                            <select  class="form-control" id="product-quantity" >
+                                {% for i in 1..product.quantity %}
+                                    {% if i == currentQuantity %}
+                                        <option selected>{{ i }}</option>
+                                    {% else %}
+                                        <option>{{ i }}</option>
+                                    {% endif %}
+                                {% endfor %}
                             </select>
                         </div>
-                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-5">
-                            <button type="button" class="btn btn-default" onclick="addFromInfo('{{ product.id }}', {{ product.price }})">Add to Basket</button>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-5">
+                            <button type="button"
+                                    class="btn btn-default"
+                                    id="addButton"
+                                    onclick="addFromInfo('{{ product.id }}', '{{ product.price }}')">
+                                    {% if currentQuantity>0 %}
+                                        Update Basket
+                                    {% else %}
+                                        Add to Basket
+                                    {% endif %}
+                            </button>
                         </div>
-                        <div class="col-ld-8 col-md-8 col-sm-7 col-xs-4"><p class="form-control-static">{{ product.quantity }} available</p></div>
+                        <div class="col-ld-7 col-md-7 col-sm-7 col-xs-4">
+                            <p class="form-control-static">
+                                {{ product.quantity }} available
+                            </p>
+                        </div>
                     </div>
                 </form>
+            </div>
+            <div class="row">
+                <div class="col-lg-offset-1 col-xs-offset-2" id="confirm-text"></div>
             </div>
         </div>
     </div>
