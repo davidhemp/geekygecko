@@ -18,7 +18,7 @@
                 {% for item in purchases %}
                     <tr>
                         <td>
-                            <a href="/?s={{ item.id }}">
+                            <a href="/search/{{ item.id }}">
                                 <h5 class="form-control-static">
                                     {{ item.name }} <small>{{ item.id }}
                                 </h5>
@@ -61,7 +61,7 @@
         </table>
     </div>
     <div class="row">
-        <button action="/" method="get" class="btn btn-default" value="">Continue Shopping</button>
+        <button class="btn btn-default" onclick="location.href='/'">Continue Shopping</button>
         <button class="btn btn-default" value="">Checkout</button>
     </div>
 </div>

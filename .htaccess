@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule  ^index/?$   index.php  [NC]
+RewriteRule  ^search/(.+)$ search.php?s=$1
+RewriteRule  ^products/(.+)$ search.php?s=$1
+RewriteRule  ^account  account.php

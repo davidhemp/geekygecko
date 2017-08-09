@@ -1,7 +1,7 @@
 <?php
-include "productInterface.php";
+require_once "productInterface.php";
 
-function basket(){
+function basket($context){
     $prefix = "basket_";
     $products = array();
     $sub_total = 0;
@@ -28,7 +28,7 @@ function basket(){
     } else {
         $delivery = 4.99;
     }
-    $context = array();
+
     $context['purchases'] = $products;
     $context['delivery'] = sprintf("%.02f", $delivery);
     $context['subTotal'] = sprintf("%.02f", $sub_total);

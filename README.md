@@ -14,4 +14,11 @@ is managed with the paypal API.
 The database at the moment is mysql as it comes with the web hosting and the
 traffic is unlikely to be demanding. There are seperate interfaces for the three
 main tables as each is handled differently although they may be
-combined/abstracted at a later date. 
+combined/abstracted at a later date.
+
+
+## style comments
+Filenames and frontend varibles use cammelCase and CapsCase for classes.
+
+PHP uses underscore seperated varibles and funcation names and CapsCase for
+classes.
