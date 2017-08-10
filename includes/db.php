@@ -2,16 +2,14 @@
 function db_connect(){
     $config = parse_ini_file('../../gg_config.ini');
     // Create connection
-    $conn = mysql_connect(  $config['server'],
-                            $config['user'],
-                            $config['pass']);
+    $conn = new mysqli($config['server'], $config['user'], $config['pass']);
 
     // // Check connection
-    if (!$conn) {
-        die("Connection failed: " . mysql_connect_error());
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
 
-    if (!mysql_select_db($config['db'], $conn)) {
+    if (!mysqli_select_db($conn, $config['db'])) {
         die("Could not select database");
     }
     return $conn;

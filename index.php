@@ -1,5 +1,5 @@
 <?php
-include "base.php";
+require_once "base.php";
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);
 ?>
@@ -10,4 +10,5 @@ include "base.php";
         $template = $twig->loadTemplate("home.phtml");
         $template->display($context);
      ?>
+</body>
 </html>

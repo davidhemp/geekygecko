@@ -11,4 +11,5 @@ require_once "includes/checkout.php";
         $template = $twig->loadTemplate("basket.phtml");
         $template->display($context);
      ?>
+</body>
 </html>

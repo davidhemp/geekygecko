@@ -1,0 +1,38 @@
+{% include 'header.phtml' %}
+<div class="container" style="padding: 20px;">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="row">
+            <h3 class="col-lg-6">Login</h3>
+        </div>
+        <form class="form-horizontal" action"/login.php" method="POST">
+            <div class="row">
+                <div class="row margin-bottom">
+                    <div class="col-lg-4">
+                        <label class="form-control-static">Username</label>
+                    </div>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="username">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row margin-bottom">
+                    <div class="col-lg-4">
+                        <label class="form-control-static">Password</label>
+                    </div>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="password" name="password">
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-5 col-lg-offset-5">
+                    <input type="submit" class="form-control" value="Log in">
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <a href="/createAccount.php">Create Account</a>
+        </div>
+    </div>
+</div>

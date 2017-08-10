@@ -7,15 +7,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{ static }}/cookie.js"></script>
+    <script src="{{ static }}/password.js"></script>
 </head>
 
+<body>
 <div class="row header">
     <div class="col-md-2 col-sm-1 col-xs-12 icon-center" style="text-align:center">
         <img src="{{ media }}/logo.png">
     </div>
     <div class="col-md-1 col-md-push-8 col-sm-2 col-sm-push-7 hidden-xs icon-center header-link">
         <div class="row">
-            <a href="#"><img  src="{{ media }}/user.png"></a>
+            <a href="/account.php"><img  src="{{ media }}/user.png"></a>
         </div>
         <div class="row">
             <a href="/account.php"><p>Account</p></a>
@@ -23,7 +25,7 @@
     </div>
     <div class="col-md-1 col-md-push-8 col-sm-1 col-sm-push-7 hidden-xs icon-center header-link">
         <div class="row">
-            <a href="#"><img  src="{{ media }}/basket.png"></a>
+            <a href="/basket.php"><img  src="{{ media }}/basket.png"></a>
         </div>
         <div class="row">
             <a href="/basket.php">
@@ -67,4 +69,7 @@
             </p>
         </a>
     </div>
+</div>
+<div class="row">
+    <div class="col-ld-12 error">{{ error }}</div>
 </div>

@@ -16,9 +16,9 @@ function seoUrl($string) {
 function product_search($search_term){
     $conn = db_connect();
     $query = "SELECT * FROM `products` WHERE name LIKE '$search_term' or productid LIKE '$search_term' ORDER BY productid DESC";
-    $result = mysql_query($query, $conn);
+    $result = mysqli_query($query, $conn);
 
-    mysql_close($conn);
+    mysqli_close($conn);
     if (!$result) {
         return FALSE;
     } else {
@@ -29,12 +29,12 @@ function product_search($search_term){
 function unqiueproduct($unqiue){
     $conn = db_connect();
     $query = "SELECT * FROM `products` WHERE productid = '$unqiue'";
-    $result = mysql_query($query, $conn);
-    mysql_close($conn);
+    $result = mysqli_query($query, $conn);
+    mysqli_close($conn);
 
     if (!$result) {
         return FALSE;
-    } elseif (mysql_num_rows($result) > 1) {
+    } elseif (mysqli_num_rows($result) > 1) {
         return FALSE;
     } else {
         return extractRows($result)[0];
@@ -43,7 +43,7 @@ function unqiueproduct($unqiue){
 
 function extractRows($result){
     $return_arr = array();
-    while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+    while ($row = mysqli_fetch_array($result, MYSQL_ASSOC)) {
         $row_array['id'] = $row['productid'];
         $row_array['name'] = $row['name'];
         $row_array['url'] = seoURL($row['name']);

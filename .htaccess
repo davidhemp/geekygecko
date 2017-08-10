@@ -1,3 +1,5 @@
+php_flag magic_quotes_gpc Off
+
 RewriteEngine On
 RewriteRule  ^index/?$   index.php  [NC]
 RewriteRule  ^search/(.+)$ search.php?s=$1
