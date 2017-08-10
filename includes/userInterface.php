@@ -13,31 +13,32 @@ function user_add($details){
     }
     extract($details);
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $query = "INSERT INTO `users` (first_name,last_name,address_1st,address_2nd,town,county,country,email,password,phone) VALUES('$firstName', '$lastName', '$address1st', '$address2nd', '$town', '$county', '$country', '$username', '$hashed_password', '$phone')";
+    $sql = "INSERT INTO `users` (first_name,last_name,address_1st,address_2nd,town,county,country,email,password,phone) VALUES('$firstName', '$lastName', '$address1st', '$address2nd', '$town', '$county', '$country', '$username', '$hashed_password', '$phone')";
 
-    if (mysqli_query($conn, $query)) {
+    if ($conn->query($sql) == TRUE) {
         echo "New record created successfully";
     } else {
-        echo "Error: " . $query . "<br>" . mysqli_error($conn);
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
-
-    mysqli_close($conn);
+    $conn ->close();
 }
 
 function login($username, $password){
     $conn = db_connect();
-    $username = stripslashes($username);
-    $password = stripslashes($password);
-    $username = mysqli_real_escape_string($username);
-    $password = mysqli_real_escape_string($password);
-    $query = "SELECT * FROM `users` WHERE `email` = '$username' AND `password` = '$password'";
-    $result = mysqli_query($query, $conn);
-    if (mysqli_num_rows($result)){
-        session_start();
-        // $_SESSION['auth_key'] = random_bytes(64);
-        $_SESSION['username'] = $username;
-        return True;
-    } else {
+    $sql = "SELECT * FROM `users` WHERE `email` = '$username'";
+    $result = $conn->query($sql);
+    if ($result->num_rows == 1){
+        $row = $result -> fetch_assoc();
+        if (password_verify($password, $row["password"])){
+            session_start();
+            // $_SESSION['auth_key'] = random_bytes(64);
+            $_SESSION['username'] = $username;
+            return True;
+        } else {
+            return False;
+            exit;
+        }
+    } else { // if this fails then the email/username is not unqiue somehow
         return False;
         exit;
     }

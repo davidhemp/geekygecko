@@ -1,6 +1,8 @@
 <?php
 require_once "base.php";
 require_once "includes/productInterface.php";
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 $search_term = '%' . htmlspecialchars($_GET["s"]) . '%';
 $return_arr = product_search($search_term);
