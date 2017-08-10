@@ -1,42 +1,46 @@
 {% include 'header.phtml' %}
+
 <div class="container" style="padding: 20px;">
     <div class="col-lg-10 col-lg-offset-2">
+        <form class="form-horizontal" action="/purchase.php" method="POST">
+        {% if not hasAccount %}
         <div class="row">
-            <h3 class="col-lg-12">Create new account</h3>
+            <h3>Include a password to track orders</h3>
         </div>
-        <!-- <form class="form-horizontal" action"/account?page=create_account" method="post"> -->
-        <form class="form-horizontal" action"/createAccount.php" method="POST">
+        <div class="row margin-bottom">
+            <div class="col-lg-4">
+                <label class="form-control-static">Password</label>
+            </div>
+            <div class="col-lg-3">
+                <input class="form-control" type="password" id="password" name="password">
+            </div>
+        </div>
+        <div class="row margin-bottom-large">
+            <div class="col-lg-4">
+                <label class="form-control-static">Confirm passwords</label>
+            </div>
+            <div class="col-lg-3">
+                <input class="form-control" type="password" id="passwordConfirm" name="passwordConfirm" onchange="checkMatch()">
+            </div>
+        </div>
+        {% endif %}
+        <div class="row">
+            <h3 class="col-lg-12">Order delivery details</h3>
+        </div>
             <div class="row margin-bottom">
                 <div class="col-lg-4">
-                    <label class="form-control-static">Email</label>
+                    <label class="form-control-static">Email Address</label>
                 </div>
                 <div class="col-lg-4">
-                    <input class="form-control" type="text" name="email">
+                    <input class="form-control" type="text" name="email" value="{{ email }}">
                 </div>
             </div>
-            <div class="row margin-bottom">
-                <div class="col-lg-4">
-                    <label class="form-control-static">Password</label>
-                </div>
-                <div class="col-lg-4">
-                    <input class="form-control" type="password" id="password" name="password">
-                </div>
-            </div>
-            <div class="row margin-bottom-large">
-                <div class="col-lg-4">
-                    <label class="form-control-static">Confirm passwords</label>
-                </div>
-                <div class="col-lg-4">
-                    <input class="form-control" type="password" id="passwordConfirm" name="passwordConfirm" onchange="checkMatch()">
-                </div>
-            </div>
-            <!-- ------------------------------------------------------------ -->
             <div class="row margin-bottom">
                 <div class="col-lg-4">
                     <label class="form-control-static">First Name</label>
                 </div>
                 <div class="col-lg-4">
-                    <input class="form-control" type="text" name="firstName">
+                    <input class="form-control" type="text" name="firstName" value="{{ address.first_name }}">
                 </div>
             </div>
             <div class="row margin-bottom">
@@ -44,23 +48,23 @@
                     <label class="form-control-static">Last Name</label>
                 </div>
                 <div class="col-lg-4">
-                    <input class="form-control" type="text" name="lastName">
+                    <input class="form-control" type="text" name="lastName" value="{{ address.last_name }}">
                 </div>
             </div>
             <div class="row margin-bottom">
                 <div class="col-lg-4">
-                    <label class="form-control-static">Address 1</label>
+                    <label class="form-control-static">Address line 1</label>
                 </div>
                 <div class="col-lg-4">
-                    <input class="form-control" type="text" name="address1st">
+                    <input class="form-control" type="text" name="address1st" value="{{ address.address_1st }}">
                 </div>
             </div>
             <div class="row margin-bottom">
                 <div class="col-lg-4">
-                    <label class="form-control-static">Address 2</label>
+                    <label class="form-control-static">Address line 2</label>
                 </div>
                 <div class="col-lg-4">
-                    <input class="form-control" type="text" name="address2nd">
+                    <input class="form-control" type="text" name="address2nd" value="{{ address.address_2nd }}">
                 </div>
             </div>
             <div class="row margin-bottom">
@@ -68,7 +72,7 @@
                     <label class="form-control-static">Town</label>
                 </div>
                 <div class="col-lg-4">
-                    <input class="form-control" type="text" name="town">
+                    <input class="form-control" type="text" name="town" value="{{ address.town }}">
                 </div>
             </div>
             <div class="row margin-bottom">
@@ -76,7 +80,7 @@
                     <label class="form-control-static">County</label>
                 </div>
                 <div class="col-lg-4">
-                    <input class="form-control" type="text" name="county">
+                    <input class="form-control" type="text" name="county" value="{{ address.county }}">
                 </div>
             </div>
             <div class="row margin-bottom">
@@ -84,7 +88,7 @@
                     <label class="form-control-static">Postcode</label>
                 </div>
                 <div class="col-lg-4">
-                    <input class="form-control" type="text" name="postcode">
+                    <input class="form-control" type="text" name="postcode" value="{{ address.postcode }}">
                 </div>
             </div>
             <div class="row margin-bottom">
@@ -92,7 +96,7 @@
                     <label class="form-control-static">Phone</label>
                 </div>
                 <div class="col-lg-4">
-                    <input class="form-control" type="text" name="phone">
+                    <input class="form-control" type="text" name="phone" value="{{ address.phone }}">
                 </div>
             </div>
             <div class="row margin-bottom-large">
@@ -105,7 +109,7 @@
             </div>
             <div class="row ">
                 <div class="col-lg-3 col-lg-offset-5">
-                    <input type="submit" id="submitButton" disabled class="form-control" value="Create">
+                    <input type="submit" id="submitButton" class="form-control" value="Next">
                 </div>
             </div>
         </form>

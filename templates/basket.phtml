@@ -60,7 +60,25 @@
         </table>
     </div>
     <div class="row">
-        <button class="btn btn-default" onclick="location.href='/'">Continue Shopping</button>
-        <button class="btn btn-default" value="">Checkout</button>
+        <a href='/'>Continue Shopping</a> |
+        <a href='/address.php'>Checkout</a>
+        <!-- <div class="col-ld-4" id="paypal-button"></div>
+        <script>
+            paypal.Button.render({
+
+                // env: 'production'
+                env: 'sandbox',
+                commit: true, // Show a 'Pay Now' button
+
+                payment: function() {
+                    // Set up the payment here
+                },
+
+                onAuthorize: function(data, actions) {
+                    // Execute the payment here
+               }
+
+            }, '#paypal-button');
+        </script> -->
     </div>
 </div>

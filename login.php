@@ -8,8 +8,8 @@ ini_set('display_errors', 1);
 <!DOCTYPE html>
 <html lang="en">
     <?php
-        if (isset($_POST['username']) && isset($_POST['password'])){
-            if (!login($_POST['username'], $_POST['password'])){
+        if (isset($_POST['email']) && isset($_POST['password'])){
+            if (!login($_POST['email'], $_POST['password'])){
                 $context['error'] = "Username and/or password incorrect";
             } else {
                 header("Location: /account.php");

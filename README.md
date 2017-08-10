@@ -9,6 +9,9 @@ pages. The last is account.php which handles the users account information
 including past orders. Payment details are not stored by the site as everthing
 is managed with the paypal API.
 
+As 123-reg hosting uses PHP 5.5 I have also used random_bytes from
+https://github.com/paragonie/random_compat.
+
 ## Database
 
 The database at the moment is mysql as it comes with the web hosting and the

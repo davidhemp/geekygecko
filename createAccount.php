@@ -10,7 +10,7 @@ ini_set('display_errors', 1);
     <?php
         if (isset($_POST['username']) && isset($_POST['password'])){
             $keys = array("firstName", "lastName", "address1st", "address2nd",
-                            "town", "county", "country", "postcode", "username",
+                            "town", "county", "country", "postcode", "email",
                             "phone", "password");
             $details = array();
             foreach($keys as $key){
@@ -23,9 +23,12 @@ ini_set('display_errors', 1);
                     $details[$key] = $_POST[$key];
                 }
             }
-            user_add($details);
-            // header("Location: /account.php");
-            exit;
+            if (user_add($details)){
+                header("Location: /account.php");
+                exit;
+            } else {
+                $context['error'] = "Failed to create account";
+            }
         }
         $template = $twig->loadTemplate("accountCreate.phtml");
         $template->display($context);

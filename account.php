@@ -9,8 +9,8 @@ ini_set('display_errors', 1);
 <html lang="en">
     <?php
         session_start();
-        if(isset($_SESSION['username'])){
-            $context['username'] = $_SESSION['username'];
+        if(isset($_SESSION['email'])){
+            $context['email'] = $_SESSION['email'];
             $template = $twig->loadTemplate("accountInfo.phtml");
         } else {
             header("Location: /login.php");

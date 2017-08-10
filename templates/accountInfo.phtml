@@ -1,4 +1,28 @@
 {% include 'header.phtml' %}
-<h3>Logged in</h3>
-{{ username }}
-<a href="logout.php">Logout</a>
+
+<div class="container">
+    <div class="row">
+        <h3> Currently logged in as {{ email }} <small><a href="logout.php">Logout</a></small></h3>
+    </div>
+    <div class="row">
+        <div class="col-ld-6">
+            <div class="row">
+                <p><a href="#">Personal details</a></p>
+            </div>
+            <div class="row">
+                <p><a href="#">Change password</a></p>
+            </div>
+        </div>
+        <div class="col-ld-6">
+            <div class="row">
+                <p><a href="#">Open orders</a></p>
+                {% if openorders %}
+
+                {% endif %}
+            </div>
+            <div class="row">
+                <p><a href="#">Past orders</a></p>
+            </div>
+        </div>
+    </div>
+</div>
