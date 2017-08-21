@@ -30,6 +30,7 @@ ini_set('display_errors', 1);
                 $details["password"] = bin2hex(random_bytes(50));
             } else {
                 $details["password"] = $_POST["password"];
+                $details["enabled"] = True;
             }
             user_add($details);
         }

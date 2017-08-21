@@ -10,15 +10,10 @@ ini_set('display_errors', 1);
 <html lang="en">
     <?php
         session_start();
-        if($_SESSION['email']){
-            $address = getAddress($_SESSION['email']);
-            if($address){
-                $context['address'] = $address;
-                $context['email'] = $_SESSION['email'];
-                $context['hasAccount'] = True;
-            } else {
-                $context['error'] = "Could not find an address of this account";
-            }
+        if(isset($_SESSION["user"])){
+            $context["address"] = $_SESSION["user"]->address;
+            $context["email"] = $_SESSION["user"]->email;
+            $context["loggedIn"] = True;
         }
         $template = $twig->loadTemplate("address.phtml");
         $template->display($context);

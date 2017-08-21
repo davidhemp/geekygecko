@@ -10,7 +10,7 @@ function basket($context){
             $item = array();
             $item['id'] = substr(htmlspecialchars($name), 7);
             $item['quantity'] = intval($value);
-            $rtned_product = unqiueproduct($item['id']);
+            $rtned_product = Product::unqiue_search($item['id']);
             if ($rtned_product){
                 $item['price'] = sprintf("%.02f", $rtned_product['price']);
                 $item['name']= $rtned_product['name'];
